@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:Converter="clr-namespace:MyLearningStrategyMobleXForms.Converters"
+             xmlns:viewmodels="clr-namespace:MyLearningStrategyMobleXForms.ViewModels"
+             xmlns:models="clr-namespace:MyLearningStrategyMobleXForms.Models"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="MyLearningStrategyMobleXForms.Views.CategoriesListPage"
+             x:DataType="viewmodels:CategoriesListViewModel"
+             x:Name="MyCategoriesPage"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:StringNullOrEmptyBoolConverter x:Key="invisibilityCloak" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ListView x:Name="SubjectsListView"
+                ItemsSource="{Binding List, Mode=OneWay }"
+                CachingStrategy="RecycleElement"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadDataCommand}"
+                IsPullToRefreshEnabled="true"
+                RefreshControlColor="DeepSkyBlue" 
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                SeparatorVisibility="None">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:CategoriesDTO">
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout>
+
+                                <Label Text="{Binding CategoryName, Mode=OneWay}"  
+                                                       HorizontalOptions="StartAndExpand"
+                                                       LineBreakMode="TailTruncation"
+                                                       FontSize="Small"
+                                             
+                                                       FontAttributes="Italic"/>
+
+                                <ffimageloading:CachedImage 
+                                        CacheType="All"
+                                        MinimumHeightRequest="150"
+                                        MinimumWidthRequest="150"
+                                        HeightRequest="200"
+                                        WidthRequest="200"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        Aspect="AspectFill" 
+                                        DownsampleToViewSize="True"                         
+                                        LoadingPlaceholder="bookshelf40.png"
+                                        ErrorPlaceholder="image64no.png"  
+                                        FadeAnimationEnabled="True"
+                                        InvalidateLayoutAfterLoaded="True"
+                                        CacheDuration="50"
+                                        BackgroundColor="Aqua" 
+                                        RetryCount="3"
+                                        RetryDelay="30"
+                                        IsVisible="{Binding ImageDevice, Mode=OneWay, Converter={StaticResource invisibilityCloak}}"
+                                        Source="{Binding ImageDevice, Mode=OneWay}">
+                                </ffimageloading:CachedImage>
+
+                            </StackLayout>
+                   
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:maple="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:viewmodels="clr-namespace:MyLearningStrategyMobleXForms.ViewModels"
+             xmlns:models="clr-namespace:MyLearningStrategyMobleXForms.Models"
+             mc:Ignorable="d"
+             x:Class="MyLearningStrategyMobleXForms.Views.ResponsesListPage"
+             x:DataType="viewmodels:ResponcesListViewModel"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="OnAdd"   Order="Primary"  IconImageSource="answeradd40.png"/>
+    </ContentPage.ToolbarItems>
+    <ListView x:Name="ResponsesList"
+            ItemsSource="{Binding List}"
+            CachingStrategy="RecycleElement"
+            VerticalOptions="FillAndExpand"
+            HasUnevenRows="true"
+            RefreshCommand="{Binding LoadDataCommand}"
+            IsPullToRefreshEnabled="true"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+        <!--Built in Cells-->
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:ResponsesDTO">
+                <ViewCell>
+                    <ViewCell.ContextActions >
+                        <MenuItem  Clicked="OnEditItem" Text="Edt" IconImageSource="answerEdit40.png" />
+                    </ViewCell.ContextActions>
+                    <ViewCell.View>
+                        <maple:PancakeView>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="6*"  />
+                                    <ColumnDefinition Width="2*"  />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"  />
+                                </Grid.RowDefinitions>
+                                <StackLayout Padding="10" Grid.Row="0" Grid.Column="0">
+                                    <Label Text="{Binding Response}" 
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    FontSize="16" />
+                                    <Label Text="{Binding Mnemonic}" 
+                                    d:Text="Acronym"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    FontSize="13" />
+                                </StackLayout>
+                            </Grid>
+                        </maple:PancakeView>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+   
+    </ListView>
+</ContentPage>

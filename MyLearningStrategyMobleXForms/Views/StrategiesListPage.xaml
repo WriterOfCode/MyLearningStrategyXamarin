@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:maple="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:viewmodels="clr-namespace:MyLearningStrategyMobleXForms.ViewModels"
+             xmlns:models="clr-namespace:MyLearningStrategyMobleXForms.Models"
+             mc:Ignorable="d"
+             x:Class="MyLearningStrategyMobleXForms.Views.StrategiesListPage"
+             x:DataType="viewmodels:StrategiesListViewModel"
+             Title="Strategies"
+             x:Name="BrowseStrategies">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="OnAdd"  IconImageSource="strategy40add.png"/>
+    </ContentPage.ToolbarItems>
+    <ListView x:Name="StrategiesList"
+                ItemsSource="{Binding List, Mode=OneWay }"
+                CachingStrategy="RecycleElement"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadDataCommand}"
+                IsPullToRefreshEnabled="true"
+                RefreshControlColor="DeepSkyBlue" 
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                SeparatorVisibility="None">
+        <ListView.ItemTemplate>
+            <DataTemplate  x:DataType="models:StrategyDTO" >
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem Clicked="OnEdit"  Text="Edt" IconImageSource="strategy40edit.png"/>
+                    </ViewCell.ContextActions>
+                    <ViewCell.View>
+                        <maple:PancakeView >
+                            <StackLayout Spacing="6" Padding="15">
+                                <Label Text="{Binding Name}" FontSize="Medium" />
+                                <!--<Label Text="Description" FontSize="Small" />
+                                <Label Text="{Binding Description}" FontSize="Small" />-->
+                                <Label Text="{Binding Summary}" FontSize="Small" />
+                            </StackLayout>
+                        </maple:PancakeView>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+
+</ContentPage>

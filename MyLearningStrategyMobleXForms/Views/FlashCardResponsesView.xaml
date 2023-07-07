@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:maple="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="MyLearningStrategyMobleXForms.Views.FlashCardResponsesView">
+
+    <ContentView.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="0, 4" />
+            <Setter Property="IsTabStop" Value="False"/>
+        </Style>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <maple:PancakeView
+                Padding="20"
+                HasShadow="True"
+                BackgroundGradientAngle="25"
+                BackgroundGradientStartColor="AliceBlue"
+                BackgroundGradientEndColor="Aquamarine"
+                BorderThickness="3"
+                BorderColor="White"
+                BorderGradientAngle="25"
+                BorderDrawingStyle="Outside" 
+                CornerRadius="40"
+                IsClippedToBounds="True">
+                <ListView x:Name="ResponsesListView" 
+                     HasUnevenRows="true" 
+                     SeparatorVisibility="None" >
+                <ListView.Header>
+                    <StackLayout>
+                        <Image Source="icons8faq80"></Image>
+                        <Label Text="Answers"></Label>       
+                    </StackLayout>
+
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <FlexLayout Direction="Row" 
+                                    AlignItems="Start"
+                                    JustifyContent="Start">
+                                    <CheckBox IsChecked="{Binding IsCorret}" HorizontalOptions="Start"></CheckBox>
+                                    <Label Text="{Binding Response}" IsEnabled="True" IsTabStop="True" HorizontalOptions="Fill" />
+                                </FlexLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </maple:PancakeView>
+    </ContentView.Content>
+</ContentView>

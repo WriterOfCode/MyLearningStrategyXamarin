@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             xmlns:maple="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyLearningStrategyMobleXForms.Views.FlashCardView">
+    <ContentView.Content>
+        <maple:PancakeView
+             Padding="20"
+             HasShadow="True"
+             BackgroundGradientAngle="25"
+             BackgroundGradientStartColor="AliceBlue"
+             BackgroundGradientEndColor="Aquamarine"
+             BorderThickness="3"
+             BorderColor="White"
+             BorderGradientAngle="25"
+             BorderDrawingStyle="Outside" 
+             CornerRadius="40"
+             IsClippedToBounds="True">
+            <TableView Intent="Form" HasUnevenRows="True" StyleId="">
+                <TableRoot>
+                    <TableSection 
+                        CompressedLayout.IsHeadless="True">
+                        <ViewCell>
+                            <StackLayout Grid.Row="0">
+                                <Label Text="Question"/>
+                                <Editor Text="{Binding Question, Mode=OneTime}"  
+                                    FontSize="Small"
+                                    IsEnabled="False">
+                                </Editor>
+                                <Label Text="Mnemonic"/>
+                                <Editor Text="{Binding Mnemonic, Mode=OneTime}"  
+                                    FontSize="Small"
+                                    IsEnabled="False"
+                                    MinimumHeightRequest="50"/>
+                                <FlexLayout Direction="Row"
+                                        AlignItems="Start"
+                                        JustifyContent="SpaceEvenly">
+                                    <Label Text="Correctly Answered"/>
+                                    <Label Text="{Binding AnsweredCorrectly}"/>
+                                    <Label Text="Incorrectly Answered"/>
+                                    <Label Text="{Binding AnsweredIncorrectly}"/>
+                                </FlexLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection
+                        CompressedLayout.IsHeadless="True">
+                        <ViewCell>
+                            <ffimageloading:CachedImage 
+                            MinimumHeightRequest="60"
+                            HorizontalOptions="Fill"
+                            Aspect="AspectFill"
+                            FadeAnimationForCachedImages="True" 
+                            FadeAnimationDuration="36"
+                            VerticalOptions="Fill"
+                            Source="{Binding Item.Image_1_Device, Mode=OneTime}">
+                            </ffimageloading:CachedImage>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </maple:PancakeView>
+    </ContentView.Content>
+</ContentView>

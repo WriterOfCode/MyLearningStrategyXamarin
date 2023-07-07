@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:behave="clr-namespace:MyLearningStrategyMobleXForms.Behaviors"
+             xmlns:maple="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="MyLearningStrategyMobleXForms.Views.StrategyDetailPage"
+              xmlns:f9p="clr-namespace:Forms9Patch;assembly=Forms9Patch"
+             Title="Strategy">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="OnSave" Priority="0" Order="Default" />
+        <ToolbarItem Text="Cancel" Clicked="OnCancel" Priority="1" Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ContentView>
+            <maple:PancakeView>
+                <ScrollView>
+                    <StackLayout Spacing="6" Padding="15">
+                        <Entry Placeholder="Enter Name of Strategy" Text="{Binding Item.Name}" FontSize="Medium" >
+                            <Entry.Behaviors>
+                                <behave:InvalidateEntryMissingText></behave:InvalidateEntryMissingText>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="Description" FontSize="Medium" />
+                        <Entry Placeholder="Description" Text="{Binding Item.Description}" FontSize="Small" />
+
+
+
+                        <f9p:StateButton ToggleBehavior="true" HeightRequest="80" Alignment="Start">
+</f9p:StateButton>
+                            <f9p:StateButton Text="HI"></f9p:StateButton>
+                        <f9p:Label TextColor="Black">
+                            <![CDATA[plain <b>bold</b> <i>italic</i>]]>
+                        </f9p:Label>
+                        <f9p:MaterialButton IsSelected="{Binding Item.RecycleIncorrectlyAnswered}" ></f9p:MaterialButton>
+                        <f9p:StateButton Text="afds"></f9p:StateButton>
+                        <f9p:Button Text="button"></f9p:Button>
+                        <f9p:MultiComponentPicker> </f9p:MultiComponentPicker>
+                        <Picker Title="Sort questions by" 
+                                ItemsSource="{Binding SortRulesList}"
+                                ItemDisplayBinding="{Binding Definition}"
+                                SelectedIndex ="{Binding Id,Mode=TwoWay}"
+                                SelectedItem ="{Binding PickedSortRule, Mode=TwoWay}"/>
+                        <Label Text="Question" FontSize="Small" />
+                        
+                        
+                        <Picker Title="Question Selection"
+                                ItemsSource="{Binding QuestionSelectionList}"
+                                ItemDisplayBinding="{Binding Definition}"
+                                SelectedItem="{Binding PickedQuestion,Mode=TwoWay}"/>
+                        <Label Text="Response" FontSize="Small" />
+                        <Picker Title="Response Selection"
+                                ItemsSource="{Binding ResponseSelectionList}"
+                                ItemDisplayBinding="{Binding Definition}"
+                                SelectedItem="{Binding PickedResponse,Mode=TwoWay}" />
+                        <Label Text="Recycle Incorrectly Ansered Questions" FontSize="Medium"  HorizontalOptions="Start"/>
+                        <Switch IsToggled="{Binding Item.RecycleIncorrectlyAnswered}" HorizontalOptions="End"></Switch>
+                        
+                    </StackLayout>
+                </ScrollView>
+            </maple:PancakeView>
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>
