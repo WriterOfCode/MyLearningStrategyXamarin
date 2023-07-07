@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "lHLG4HTX6CZs+ivFfch/LZI37SwHNRtcx/ajS7lDKRDgtJ8s/JA4zhcOdYi2ncaskzi/8qxEf9VQFfrnMWBGjg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\davis\\Source\\Repos\\My Learning Strategy Moble\\MyLearningStrategyMobleXForms.ViewFlipper.iOS\\MyLearningStrategyMobleXForms.ViewFlipper.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\davis\\.nuget\\packages\\xamarin.forms\\4.4.0.991265\\xamarin.forms.4.4.0.991265.nupkg.sha512"
+  ],
+  "logs": []
+}
